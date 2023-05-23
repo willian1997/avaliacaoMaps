@@ -1,0 +1,43 @@
+1 - Criar um aplicativo - blank - css
+    ionic start mapsApp blank --type=angular
+
+2 - instalar o capacitor do google documentação ionic
+
+arquivo home scss = capacitor-google-map {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+3 - adicionar a key do google maps no src/environments.ts = mapsKey: 'AIzaSyD6v5fULYIQf3DgoRdHRxCahyUMBJSYyjc'
+        obs: para pegar a key usar o google cloud para gerar
+
+4 - realizar a importação do custom elements e schemas no home.modules.ts = 
+        import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+        schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
+5 - importar o google maps no home.page.ts =
+        import { GoogleMap } from '@capacitor/google-maps';
+
+6 - adicionar constante para a key = 
+        const apiKey = 'YOUR_API_KEY_HERE';
+
+7 - criação do metodo para gerar o maps = 
+        const mapRef = document.getElementById('map');
+
+                const newMap = await GoogleMap.create({
+                id: 'my-map', // Unique identifier for this map instance
+                element: mapRef, // reference to the capacitor-google-map element
+                apiKey: apiKey, // Your Google Maps API Key
+                config: {
+                    center: {
+                    // The initial position to be rendered by the map
+                    lat: 33.6,
+                    lng: -117.9,
+                    },
+                    zoom: 8, // The initial zoom level to be rendered by the map
+                },
+                });
+
+instalar capacitor do set camera. documentação ionic
+
